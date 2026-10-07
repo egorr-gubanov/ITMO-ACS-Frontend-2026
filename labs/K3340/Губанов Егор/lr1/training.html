@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Сильный центр — Вместе</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container-xl py-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <a class="brand" href="index.html">ВМЕСТЕ</a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a href="index.html">Занятия</a><a href="profile.html">Мой план</a>
+      <a href="session.html">Комната</a><a href="blog.html">Блог</a>
+      <a href="login.html">Войти</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container-xl py-5">
+  <p class="eyebrow"><a href="index.html">← Все занятия</a> · Пилатес</p>
+  <h1 class="display-title mb-4">Сильный центр</h1>
+
+  <div class="row g-4">
+    <div class="col-12 col-lg-8">
+      <div class="video-frame">
+        <video controls poster="assets/pilates-poster.svg"
+               aria-label="Видео занятия «Сильный центр»">
+          <source src="assets/pilates-demo.mp4" type="video/mp4">
+          Ваш браузер не поддерживает видео.
+        </video>
+      </div>
+      <section class="mt-4">
+        <h2>О практике</h2>
+        <p>Мягкая тренировка для укрепления корпуса и улучшения осанки.
+          Подходит для занятий дома и не требует специальной подготовки.</p>
+      </section>
+    </div>
+
+    <aside class="col-12 col-lg-4">
+      <section class="brutal-card p-4 mb-4">
+        <p class="eyebrow">Начальный уровень · 25 минут</p>
+        <h2 class="h3">Как проходит занятие</h2>
+        <ol class="instruction-list">
+          <li>Настройся на движение и выровняй дыхание.</li>
+          <li>Выполни мягкую разминку плеч и спины.</li>
+          <li>Повтори упражнения в комфортном темпе.</li>
+          <li>Заверши занятие спокойной растяжкой.</li>
+        </ol>
+        <a class="btn btn-brutal btn-clay w-100" href="session.html">
+          Присоединиться к группе
+        </a>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
