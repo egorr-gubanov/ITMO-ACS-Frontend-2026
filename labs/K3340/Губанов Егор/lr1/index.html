@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Занятия — Вместе</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+  >
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,7 +15,7 @@
   <div class="container-xl py-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
     <a class="brand" href="index.html">ВМЕСТЕ</a>
     <nav class="site-nav" aria-label="Основная навигация">
-      <a class="active" href="index.html">Занятия</a>
+      <a class="active" aria-current="page" href="index.html">Занятия</a>
       <a href="profile.html">Мой план</a>
       <a href="session.html">Комната</a>
       <a href="blog.html">Блог</a>
@@ -24,12 +26,17 @@
 
 <main class="container-xl py-5">
   <p class="eyebrow">Йога · Пилатес · Растяжка</p>
+
   <div class="d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
     <div>
       <h1 class="display-title">Найти занятие</h1>
-      <p class="lead-copy">Выбери практику и занимайся вместе с другими.</p>
+      <p class="lead-copy">
+        Выбери практику и занимайся вместе с другими.
+      </p>
     </div>
-    <a class="btn btn-brutal btn-clay" href="session.html">Посмотреть комнату</a>
+    <a class="btn btn-brutal btn-clay" href="session.html">
+      Посмотреть комнату
+    </a>
   </div>
 
   <form class="filter-panel row g-3 align-items-end mb-4" id="filters">
@@ -42,6 +49,7 @@
         <option value="stretch">Растяжка</option>
       </select>
     </div>
+
     <div class="col-12 col-md-3">
       <label class="form-label" for="levelFilter">Уровень</label>
       <select class="form-select" id="levelFilter">
@@ -50,26 +58,36 @@
         <option value="middle">Средний</option>
       </select>
     </div>
+
     <div class="col-12 col-md-3">
       <label class="form-label" for="durationFilter">Длительность</label>
       <select class="form-select" id="durationFilter">
-        <option value="60">Любая</option>
+        <option value="all">Любая</option>
         <option value="20">До 20 минут</option>
         <option value="30">До 30 минут</option>
       </select>
     </div>
+
     <div class="col-12 col-md-2">
       <label class="form-label" for="searchFilter">Поиск</label>
-      <input class="form-control" id="searchFilter" type="search"
-             placeholder="Например, спина">
+      <input
+              class="form-control"
+              id="searchFilter"
+              type="search"
+              placeholder="Например, спина"
+      >
     </div>
   </form>
 
   <p id="resultsCount" class="eyebrow" aria-live="polite"></p>
 
   <section class="row g-4" id="trainingList" aria-label="Список занятий">
-    <div class="col-12 col-md-6 col-xl-4 training-item"
-         data-type="pilates" data-level="beginner" data-minutes="25">
+    <div
+            class="col-12 col-md-6 col-xl-4 training-item"
+            data-type="pilates"
+            data-level="beginner"
+            data-minutes="25"
+    >
       <article class="brutal-card h-100">
         <div class="pose-art sage-bg" aria-hidden="true">
           <svg viewBox="0 0 200 120" class="pose-svg">
@@ -78,22 +96,39 @@
             <path d="M35 101h126"/>
           </svg>
         </div>
+
         <div class="card-body">
           <p class="eyebrow">Пилатес · 25 минут</p>
           <h2 class="h3">Сильный центр</h2>
-          <p>Спокойная практика для корпуса и осанки. Начальный уровень.</p>
+          <p>
+            Спокойная практика для корпуса и осанки.
+            Начальный уровень.
+          </p>
+
           <div class="d-flex gap-2 flex-wrap">
-            <a class="btn btn-brutal btn-lilac" href="training.html">Подробнее</a>
-            <button class="btn btn-brutal btn-sage" type="button" data-join>
+            <a
+                    class="btn btn-brutal btn-lilac"
+                    href="training.html?id=pilates"
+            >
+              Подробнее
+            </a>
+            <a
+                    class="btn btn-brutal btn-sage"
+                    href="session.html?id=pilates"
+            >
               Заниматься вместе
-            </button>
+            </a>
           </div>
         </div>
       </article>
     </div>
 
-    <div class="col-12 col-md-6 col-xl-4 training-item"
-         data-type="yoga" data-level="beginner" data-minutes="30">
+    <div
+            class="col-12 col-md-6 col-xl-4 training-item"
+            data-type="yoga"
+            data-level="beginner"
+            data-minutes="30"
+    >
       <article class="brutal-card h-100">
         <div class="pose-art lilac-bg" aria-hidden="true">
           <svg viewBox="0 0 200 120" class="pose-svg">
@@ -102,22 +137,39 @@
             <path d="M40 102h120"/>
           </svg>
         </div>
+
         <div class="card-body">
           <p class="eyebrow">Йога · 30 минут</p>
           <h2 class="h3">Утренний поток</h2>
-          <p>Мягкое пробуждение, дыхание и движение для всего тела.</p>
+          <p>
+            Мягкое пробуждение, дыхание и движение для всего тела.
+            Начальный уровень.
+          </p>
+
           <div class="d-flex gap-2 flex-wrap">
-            <a class="btn btn-brutal btn-lilac" href="training.html">Подробнее</a>
-            <button class="btn btn-brutal btn-sage" type="button" data-join>
+            <a
+                    class="btn btn-brutal btn-lilac"
+                    href="training.html?id=yoga"
+            >
+              Подробнее
+            </a>
+            <a
+                    class="btn btn-brutal btn-sage"
+                    href="session.html?id=yoga"
+            >
               Заниматься вместе
-            </button>
+            </a>
           </div>
         </div>
       </article>
     </div>
 
-    <div class="col-12 col-md-6 col-xl-4 training-item"
-         data-type="stretch" data-level="middle" data-minutes="18">
+    <div
+            class="col-12 col-md-6 col-xl-4 training-item"
+            data-type="stretch"
+            data-level="middle"
+            data-minutes="18"
+    >
       <article class="brutal-card h-100">
         <div class="pose-art clay-bg" aria-hidden="true">
           <svg viewBox="0 0 200 120" class="pose-svg">
@@ -126,15 +178,28 @@
             <path d="M35 102h130"/>
           </svg>
         </div>
+
         <div class="card-body">
           <p class="eyebrow">Растяжка · 18 минут</p>
           <h2 class="h3">Мягкое тело</h2>
-          <p>Небольшая практика на гибкость и лёгкость в движении.</p>
+          <p>
+            Небольшая практика на гибкость и лёгкость в движении.
+            Средний уровень.
+          </p>
+
           <div class="d-flex gap-2 flex-wrap">
-            <a class="btn btn-brutal btn-lilac" href="training.html">Подробнее</a>
-            <button class="btn btn-brutal btn-sage" type="button" data-join>
+            <a
+                    class="btn btn-brutal btn-lilac"
+                    href="training.html?id=stretch"
+            >
+              Подробнее
+            </a>
+            <a
+                    class="btn btn-brutal btn-sage"
+                    href="session.html?id=stretch"
+            >
               Заниматься вместе
-            </button>
+            </a>
           </div>
         </div>
       </article>
