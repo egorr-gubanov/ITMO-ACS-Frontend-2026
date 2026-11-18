@@ -354,6 +354,7 @@ a:hover {
         transition-duration: .01ms !important;
     }
 }
+
 .article-dialog {
     width: min(760px, calc(100% - 2rem));
     max-height: calc(100dvh - 2rem);
@@ -368,6 +369,7 @@ a:hover {
 .article-dialog::backdrop {
     background: rgb(48 42 53 / 65%);
 }
+
 .catalog-search {
     flex: 1 1 10rem;
     min-width: 0;
@@ -394,4 +396,59 @@ a:hover {
     .catalog-extra:not(.is-open) {
         display: none;
     }
+}
+
+.theme-select {
+    width: auto;
+    min-height: 40px;
+}
+
+:root[data-bs-theme="dark"] {
+    --paper: #18171e;
+    --ink: #f1edf6;
+    --surface: #24232c;
+    --sage: #3b554d;
+    --lilac: #54446b;
+    --clay: #734e49;
+    --hard-shadow: 5px 5px 0 #101014;
+    --bs-danger-rgb: 255, 164, 164;
+    color-scheme: dark;
+}
+
+[data-bs-theme="dark"] :is(.brutal-card, .filter-panel, .form-control, .form-select, .brutal-progress, .skip-link) {
+    background-color: var(--surface);
+}
+
+[data-bs-theme="dark"] :is(.form-control, .form-select) {
+    color: var(--ink);
+}
+
+[data-bs-theme="dark"] .btn-brutal {
+    box-shadow: 4px 4px 0 #101014;
+}
+
+[data-bs-theme="dark"] .btn-brutal:is(:hover, :focus-visible) {
+    color: var(--ink);
+    background-color: var(--surface);
+}
+
+[data-bs-theme="dark"] .form-check-input:checked {
+    background-color: var(--sage);
+    border-color: var(--ink);
+}
+
+[data-bs-theme="dark"] .status.is-error {
+    background: #4a272b;
+}
+
+[data-bs-theme="dark"] .video-frame {
+    background: #101014;
+}
+
+[data-bs-theme="dark"] a:hover {
+    color: #e0ccf7;
+}
+
+[data-bs-theme="dark"] :focus-visible {
+    outline-color: #c8b3ef;
 }

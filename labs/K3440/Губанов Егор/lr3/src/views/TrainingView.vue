@@ -12,7 +12,8 @@ const { data: training, loading, error, errorStatus, execute } =
     useRequest(signal => api.getTraining(route.params.id, signal))
 
 const catalogLink = computed(() => ({ name: 'catalog', query: route.query }))
-const missing = computed(() => errorStatus.value === 404)const videoId = computed(() => /^[\w-]{11}$/.test(training.value?.videoId || '') ? training.value.videoId : '')
+const missing = computed(() => errorStatus.value === 404)
+const videoId = computed(() => /^[\w-]{11}$/.test(training.value?.videoId || '') ? training.value.videoId : '')
 
 watch(training, value => {
   if (value) document.title = `${value.title} — Вместе`
