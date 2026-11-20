@@ -1,14 +1,15 @@
-import { computed, ref } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
 import { api } from '../api/index.js'
 import { DAYS } from '../constants.js'
-import { useAuth } from './useAuth.js'
+import { currentUser, session } from '../state/session.js'
+
+const savingSession = shallowRef(null)
 
 export function usePlan() {
-    const { user, refreshUser } = useAuth()
-    const saving = ref(false)
+    const saving = computed(() => session.value !== null && savingSession.value === session.value)
     const error = ref('')
     const message = ref('')
-    const plan = computed(() => [...(user.value?.plan || [])].sort((a, b) =>
+    const plan = computed(() => [...(currentUser.value?.plan || [])].sort((a, b) =>
         Object.keys(DAYS).indexOf(a.day) - Object.keys(DAYS).indexOf(b.day)
     ))
     const completed = computed(() => plan.value.filter(item => item.completed).length)
@@ -16,52 +17,45 @@ export function usePlan() {
         ? Math.round(completed.value / plan.value.length * 100)
         : 0)
 
-    async function save(update, success = 'План сохранён.') {
+    async function save(change, success = 'План сохранён.') {
         if (saving.value) return false
-        saving.value = true
-        error.value = ''
-        message.value = ''
+        resetStatus()
+
+        const activeSession = session.value
+        if (!activeSession) {
+            error.value = 'Сначала войди в аккаунт.'
+            return false
+        }
+
+        savingSession.value = activeSession
         try {
-            const actual = await refreshUser()
-            user.value = await api.updatePlan(actual.id, update(actual.plan || []))
+            const user = await api.updatePlan(activeSession.userId, change)
+            if (session.value !== activeSession) return false
+            currentUser.value = user
             message.value = success
             return true
         } catch (cause) {
-            error.value = cause.message
+            if (session.value === activeSession) error.value = cause.message
             return false
         } finally {
-            saving.value = false
+            if (savingSession.value === activeSession) savingSession.value = null
         }
     }
 
     function add(day, trainingId) {
-        return save(items => {
-            const previous = items.find(item => item.day === day && item.trainingId === trainingId)
-            return [...items.filter(item => item.day !== day), previous || {
-                day,
-                trainingId,
-                completed: false
-            }]
-        }, `План сохранён: ${DAYS[day]}.`)
+        return save({ action: 'add', day, trainingId }, `План сохранён: ${DAYS[day]}.`)
     }
 
-    function toggle(day, value) {
-        return save(items => items.map(item => item.day === day
-            ? { ...item, completed: value }
-            : item))
+    function toggle(day, trainingId, completed) {
+        return save({ action: 'complete', day, trainingId, completed })
     }
 
-    function remove(day) {
-        return save(items => items.filter(item => item.day !== day))
+    function remove(day, trainingId) {
+        return save({ action: 'remove', day, trainingId })
     }
 
     function finish(day, trainingId) {
-        return save(items => {
-            if (!items.some(item => item.day === day && item.trainingId === trainingId)) {
-                throw new Error('Это занятие уже убрали из плана. Открой личный кабинет.')
-            }
-            return items.map(item => item.day === day ? { ...item, completed: true } : item)
-        }, 'Занятие отмечено в твоём плане.')
+        return save({ action: 'complete', day, trainingId, completed: true }, 'Занятие отмечено в твоём плане.')
     }
 
     function resetStatus() {

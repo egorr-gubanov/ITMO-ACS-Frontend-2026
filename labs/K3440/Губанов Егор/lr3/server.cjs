@@ -102,7 +102,7 @@ app.use('/api', (req, res, next) => {
             return fail('Пользователь не найден.', 404);
         }
 
-        if (req.method === 'PATCH') {
+        if (req.method === 'PATCH' && !Object.hasOwn(req.body || {}, 'planChange')) {
             const { plan } = req.body || {};
 
             const knownIds = router.db
@@ -157,6 +157,50 @@ router.render = (req, res) => {
 
     return res.json(data);
 };
+
+app.patch('/api/users/:id', (req, res, next) => {
+    if (!Object.hasOwn(req.body || {}, 'planChange')) return next();
+
+    const { action, day, trainingId, completed } = req.body.planChange || {};
+    const knownTraining = router.db.get('trainings').find({ id: trainingId }).value();
+
+    if (
+        !['add', 'complete', 'remove'].includes(action) ||
+        !days.includes(day) ||
+        typeof trainingId !== 'string' ||
+        !knownTraining ||
+        (action === 'complete' && typeof completed !== 'boolean')
+    ) {
+        return res.status(400).json({ message: 'Некорректное изменение плана.' });
+    }
+
+    const userRecord = router.db.get('users').find({ id: Number(req.params.id) });
+    const user = userRecord.value();
+    const plan = user.plan || [];
+    const previous = plan.find(item => item.day === day);
+
+    if (action !== 'add' && previous?.trainingId !== trainingId) {
+        return res.status(409).json({
+            message: 'Занятие в этот день изменилось. Обнови страницу и попробуй снова.'
+        });
+    }
+
+    let nextPlan;
+
+    if (action === 'add') {
+        const item = previous?.trainingId === trainingId
+            ? previous
+            : { day, trainingId, completed: false };
+        nextPlan = [...plan.filter(item => item.day !== day), item];
+    } else if (action === 'complete') {
+        nextPlan = plan.map(item => item.day === day ? { ...item, completed } : item);
+    } else {
+        nextPlan = plan.filter(item => item.day !== day);
+    }
+
+    res.locals.data = userRecord.assign({ plan: nextPlan }).write();
+    return router.render(req, res);
+});
 
 app.use('/api', router);
 

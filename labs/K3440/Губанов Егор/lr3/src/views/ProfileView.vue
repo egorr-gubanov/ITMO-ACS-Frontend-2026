@@ -32,8 +32,14 @@ execute()
     <StatusMessage v-if="!plan.length" message="В плане пока нет занятий. Выбери тренировку в каталоге и укажи день недели." />
     <section class="plan-list" aria-label="Занятия в плане" :aria-busy="saving">
       <template v-for="item in plan" :key="item.day">
-        <PlanItem v-if="trainingsById[item.trainingId]" :item="item" :training="trainingsById[item.trainingId]"
-                  :disabled="saving" @toggle="toggle(item.day, $event)" @remove="remove(item.day)" />
+        <PlanItem
+            v-if="trainingsById[item.trainingId]"
+            :item="item"
+            :training="trainingsById[item.trainingId]"
+            :disabled="saving"
+            @toggle="toggle(item.day, item.trainingId, $event)"
+            @remove="remove(item.day, item.trainingId)"
+        />
       </template>
     </section>
     <RouterLink class="btn btn-brutal btn-clay mt-4" to="/">Выбрать занятие</RouterLink>

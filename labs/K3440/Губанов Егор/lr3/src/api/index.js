@@ -39,8 +39,8 @@ export const api = {
             signal
         }))
     },
-    updatePlan(id, plan) {
-        return unwrap(client.patch(`/users/${encodeURIComponent(id)}`, { plan }, {
+    updatePlan(id, planChange) {
+        return unwrap(client.patch(`/users/${encodeURIComponent(id)}`, { planChange }, {
             requiresAuth: true
         }))
     }

@@ -1,5 +1,25 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "test@test.tu",
+      "password": "$2a$10$cqO0Mkp3mqM/TiuDBrLbrOFJhupmC74gmrzLAXkL98oAN8cayYoRy",
+      "name": "test",
+      "goal": "stretch",
+      "plan": [
+        {
+          "day": "saturday",
+          "trainingId": "yoga",
+          "completed": true
+        },
+        {
+          "day": "monday",
+          "trainingId": "yoga",
+          "completed": false
+        }
+      ],
+      "id": 1
+    }
+  ],
   "trainings": [
     {
       "id": "pilates",
