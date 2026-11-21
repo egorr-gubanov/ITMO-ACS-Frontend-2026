@@ -24,9 +24,13 @@ execute()
   <StatusMessage :message="error || (loading ? 'Загружаем личный кабинет…' : '')" :error="Boolean(error)" />
   <button v-if="error" class="btn btn-brutal btn-paper" type="button" @click="execute()">Повторить</button>
   <div v-if="data && user">
-    <p class="eyebrow">Личный кабинет</p>
-    <h1 class="display-title">Привет, {{ user.name }}!</h1>
-    <p class="lead-copy">{{ user.email }} · Направление: {{ TYPES[user.goal] }}</p>
+    <header class="plan-heading">
+      <div>
+        <h1 class="display-title">Мой план</h1>
+        <p class="lead-copy mb-0">{{ user.email }} · {{ TYPES[user.goal] }}</p>
+      </div>
+      <RouterLink class="btn btn-brutal btn-sage" to="/">Выбрать занятие</RouterLink>
+    </header>
     <ProgressBar :completed="completed" :total="plan.length" :percent="percent" />
     <StatusMessage :message="planError || (saving ? 'Сохраняем план…' : message)" :error="Boolean(planError)" />
     <StatusMessage v-if="!plan.length" message="В плане пока нет занятий. Выбери тренировку в каталоге и укажи день недели." />
@@ -42,6 +46,5 @@ execute()
         />
       </template>
     </section>
-    <RouterLink class="btn btn-brutal btn-clay mt-4" to="/">Выбрать занятие</RouterLink>
   </div>
 </template>

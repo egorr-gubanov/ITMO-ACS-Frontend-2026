@@ -30,9 +30,11 @@ async function submit(body) {
 </script>
 
 <template>
-  <section class="brutal-card p-4 p-md-5 auth-wrap mx-auto">
-    <p class="eyebrow">Двигаться легче вместе</p>
-    <h1 class="display-title">{{ register ? 'Создать аккаунт' : 'С возвращением' }}</h1>
+  <section class="brutal-card auth-wrap mx-auto">
+    <h1 class="display-title">{{ register ? 'Создать аккаунт' : 'Вход' }}</h1>
+    <p v-if="route.query.next === '/profile'" class="lead-copy mb-0">
+      {{ register ? 'Создай аккаунт, чтобы сохранять тренировки в план.' : 'Войди, чтобы открыть свой план тренировок.' }}
+    </p>
     <AuthForm :mode="mode" :busy="busy" :error="error" @submit="submit" />
     <p class="mt-4 mb-0">
       {{ register ? 'Уже есть аккаунт?' : 'Пока нет аккаунта?' }}

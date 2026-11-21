@@ -18,6 +18,20 @@
         }
       ],
       "id": 1
+    },
+    {
+      "email": "df@vx.ry",
+      "password": "$2a$10$tFN77Rz5B/uNM1ZGOvRaeO0k4EEQb6yQ6Dz775h3GQMUzVh0I3l4a",
+      "name": "fdf",
+      "goal": "pilates",
+      "plan": [
+        {
+          "day": "monday",
+          "trainingId": "stretch",
+          "completed": false
+        }
+      ],
+      "id": 2
     }
   ],
   "trainings": [
